@@ -7,7 +7,10 @@
 from enum import Enum, unique
 import time
 
-#Data format: (name, in-class time, Est HW time)
+#To-do: figure out how to import the scheduleModelerLibrary
+import sched
+
+
 
 #School tags: WHA - Wilson Hill Academy, BP - Baptist Prep, ST - STEAM Co-op, OT - other
 
@@ -17,15 +20,11 @@ timeInDay = 12.0
 
 schoolList = ["WHA", "BP", "ST", "OT"]
 
-@unique
-class activityType(Enum):
-    CLASS = 1
-    SPORT = 2
-    PROJECT = 3
-    JOB = 4
-    EXTRACURRICULAR = 5 
-    VOLUNTEER = 6
-    RELIGIOUS = 7 # for youth and church
+
+#ML tie-in:  it might be kind of cool to create a ML algorthmn to predict if your scheudle 
+#            would be too intense. That would be awesome! Don't think that would be all that 
+#            hard either. We'll see though
+
 
 SchoolTravelConversions = {
     "WHA" : float(0),
@@ -43,33 +42,14 @@ weekDayHourTracker = {
     "Sat" : timeInDay
 }
 
-classSchedule = list()
-
-
-class classObj:
-    className = str()
-    classInClassTime = float()
-    classEstHw = float()
-    classSchool = str()
-    classTravelEST = float()
-    classDaysOfWeek = list()
-
-    def __init__(self, className, classInClassTime, classEstHw, classSchool, classtravelEST, classDaysOfWeek):
-        self.className = className
-        self.classInClassTime = classInClassTime
-        self.classEstHw = classEstHw
-        self.classSchool = classSchool
-        self.classtravelEST = classtravelEST
-        self.classDaysOfWeek = classDaysOfWeek
 
 
 
 def createWhaClass(className, classEstHW, classDaysOfWeek):
-    return classObj(className=className, classInClassTime=3, classEstHw=classEstHW, classSchool="WHA", classtravelEST=0, classDaysOfWeek=classDaysOfWeek)
+    return Class(className, 3, classEstHW, "WHA", 0, classDaysOfWeek)
 
 def createBpClass(className, classEstHW):
-    return classObj(className=className, classInClassTime = 1, classEstHw=classEstHW, classSchool="BP", classtravelEST=SchoolTravelConversions["BP"], classDaysOfWeek=5)
-
+    return Class(className, 1, classEstHW)
 
 
 
@@ -97,13 +77,13 @@ def addClass():
     classSchedule.append(newClass)
 
 
-addClass()
+#addClass()
 
 
-print(classSchedule)
 
 
 def main():
     print("Hello there! Here is your current schedule next year: ")
     print(classSchedule)
 
+main()
